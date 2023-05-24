@@ -118,7 +118,6 @@ void playAgain()
 	cout << "@--------------------------------------@" << endl;
 	cout << "|       YES! (1)         NO! (0)       |" << endl;
 	cout << "@--------------------------------------@" << endl;
-	RDLN();
 }
 
 void exitScreen()
