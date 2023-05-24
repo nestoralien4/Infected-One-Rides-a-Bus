@@ -238,10 +238,10 @@ double calculateProbability(const std::vector<std::vector<int>>& vect, int PCr, 
 					score += 10;  // High penalty for being next to a passenger
 				}
 				else if (distance <= 2) {
-					score += 5;  // Penalty for being 2 seats away
+					score += 3;  // Penalty for being 2 seats away
 				}
 				else if (distance <= 3) {
-					score += 3;  // Penalty for being 3 seats away
+					score += 2;  // Penalty for being 3 seats away
 				}
 				else if (distance <= 4) {
 					score += 1;  // Penalty for being 4 seats away
