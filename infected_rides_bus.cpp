@@ -10,7 +10,6 @@ using namespace std;
 
 
 // ZMIENNE I KLASY
-
 int czyTinySecret = 0;
 int czyHugeSecret = 0;
 int tinyTimes = 0;
@@ -21,8 +20,7 @@ bool hugeSwitch = true;
 bool ultimateSwitch = true;
 string pauza;
 
-class Bus
-{
+class Bus {
 public:
 	//Atributes
 	int rows;
@@ -32,8 +30,7 @@ public:
 	string leftWing;
 	string rightWing;
 	//constructor
-	Bus(int x, int y, int w, int z, string s, string t)
-	{
+	Bus(int x, int y, int w, int z, string s, string t) {
 		rows = x;
 		columns = y;
 		passangersMin = w;
@@ -44,20 +41,15 @@ public:
 };
 
 // FUNKCJE
-void CLSCR()
-{
+void CLSCR() {
 	system("cls");
 }
 
-void RDLN()
-{
+void RDLN() {
 	getline(cin, pauza);
 }
 
-
-
-void wygranaGra(double yourSC)
-{
+void wygranaGra(double yourSC) {
 	CLSCR();
 	cout << setprecision(2) << fixed;
 	cout << "@--------------------------------------@" << endl;
@@ -67,7 +59,7 @@ void wygranaGra(double yourSC)
 	cout << "|         Y O U    L I V E D !         |" << endl;
 	cout << "|     \\                      \\         |" << endl;
 	cout << "|      \\_________     ________\\        |" << endl;
-	cout << "|       |        |===|         |       |" << endl; 
+	cout << "|       |        |===|         |       |" << endl;
 	cout << "|        \\______/     \\_______/        |" << endl;
 	cout << "|                                      |" << endl;
 	cout << "|                                      |" << endl;
@@ -78,8 +70,7 @@ void wygranaGra(double yourSC)
 	RDLN();
 }
 
-void przegranaGra(double bestSC, double yourSC)
-{
+void przegranaGra(double bestSC, double yourSC) {
 	CLSCR();
 	cout << setprecision(2) << fixed;
 	cout << "@--------------------------------------@" << endl;
@@ -100,8 +91,7 @@ void przegranaGra(double bestSC, double yourSC)
 	RDLN();
 }
 
-void playAgain()
-{
+void playAgain() {
 	CLSCR();
 	cout << "@--------------------------------------@" << endl;
 	cout << "|                                      |" << endl;
@@ -118,10 +108,10 @@ void playAgain()
 	cout << "@--------------------------------------@" << endl;
 	cout << "|       YES! (1)         NO! (0)       |" << endl;
 	cout << "@--------------------------------------@" << endl;
+	
 }
 
-void exitScreen()
-{
+void exitScreen() {
 	CLSCR();
 	cout << "@--------------------------------------@" << endl;
 	cout << "|                                      |" << endl;
@@ -141,8 +131,7 @@ void exitScreen()
 	RDLN();
 }
 
-void gameOver()
-{
+void gameOver() {
 	CLSCR();
 	cout << "@--------------------------------------@" << endl;
 	cout << "|   Y O U    B A S I C L Y    S A T    |" << endl;
@@ -162,8 +151,7 @@ void gameOver()
 	RDLN();
 }
 
-void tinySECRET()
-{
+void tinySECRET() {
 	CLSCR();
 	cout << "@-------------TINY-SECRET--------------@" << endl;
 	cout << "|                                      |" << endl;
@@ -183,8 +171,7 @@ void tinySECRET()
 	RDLN();
 }
 
-void hugeSECRET()
-{
+void hugeSECRET() {
 	CLSCR();
 	cout << "@-------------HUGE-SECRET--------------@" << endl;
 	cout << "|                                      |" << endl;
@@ -204,8 +191,7 @@ void hugeSECRET()
 	RDLN();
 }
 
-void ultimateSECRET()
-{
+void ultimateSECRET() {
 	CLSCR();
 	cout << "@------------ULTIMATE-SECRET-----------@" << endl;
 	cout << "|                                      |" << endl;
@@ -225,20 +211,16 @@ void ultimateSECRET()
 	RDLN();
 }
 
-void secretRevealTime()
-{
-	if ((czyTinySecret == 2) && (tinySwitch == true))
-	{
+void secretRevealTime() {
+	if ((czyTinySecret == 2) && (tinySwitch == true)) {
 		tinySECRET();
 		tinySwitch = false;
 	}
-	if ((czyHugeSecret == 2) && (hugeSwitch == true))
-	{
+	if ((czyHugeSecret == 2) && (hugeSwitch == true)) {
 		hugeSECRET();
 		hugeSwitch = false;
 	}
-	if ((czyHugeSecret >= 2) && (czyTinySecret >= 2) && (tinyTimes >= 2) && (hugeTimes >= 2) && (ultimateSwitch == true))
-	{
+	if ((czyHugeSecret >= 2) && (czyTinySecret >= 2) && (tinyTimes >= 2) && (hugeTimes >= 2) && (ultimateSwitch == true)) {
 		ultimateSECRET();
 		cout << "ULTIMATE" << endl;
 		RDLN();
@@ -248,27 +230,20 @@ void secretRevealTime()
 
 double calculateProbability(const std::vector<std::vector<int>>& vect, int PCr, int PCc, int VVr, int VVc) {
 	int score = 0;
-	for (int i = 0; i < VVr; i++)
-	{
-		for (int j = 0; j < VVc; j++)
-		{
-			if (vect[i][j] == 1)
-			{
+	for (int i = 0; i < VVr; i++) {
+		for (int j = 0; j < VVc; j++) {
+			if (vect[i][j] == 1) {
 				int distance = std::abs(PCr - i) + std::abs(PCc - j);
-				if (distance <= 1)
-				{
+				if (distance <= 1) {
 					score += 10;  // High penalty for being next to a passenger
 				}
-				else if (distance <= 2)
-				{
+				else if (distance <= 2) {
 					score += 5;  // Penalty for being 2 seats away
 				}
-				else if (distance <= 3)
-				{
+				else if (distance <= 3) {
 					score += 3;  // Penalty for being 3 seats away
 				}
-				else if (distance <= 4)
-				{
+				else if (distance <= 4) {
 					score += 1;  // Penalty for being 4 seats away
 				}
 			}
@@ -278,31 +253,18 @@ double calculateProbability(const std::vector<std::vector<int>>& vect, int PCr, 
 	double probability = static_cast<double>(score) / (VVr * VVc);
 	return probability;
 }
-//do proby rozwiazania problemu vectora i wywalania gry
-bool testCoords(int boardv, int playerv)
-{
-	if (playerv <= boardv)
-	{
-		return true;
-	}
-	cout << " value higher than board dimention, enter value again" << endl;
-	return false;
-}
+
 // GENERATOR PLANSZY
-void generatorPlanszy(int x, int y, int w, int z, string s, string t)
-{
+void generatorPlanszy(int x, int y, int w, int z, string s, string t) {
 	CLSCR();
-	//pierwsze trzy linie gui
+	//pierwsze trzy linie 
 	cout << "@--------------------------------------@" << endl;
 	cout << "| " << s;
-	for (int j = 0; j < y; j++)
-	{
-		if (j <= 9)
-		{
+	for (int j = 0; j < y; j++) {
+		if (j <= 9) {
 			cout << " " << j;
 		}
-		else
-		{
+		else {
 			cout << j;
 		}
 	}
@@ -310,86 +272,69 @@ void generatorPlanszy(int x, int y, int w, int z, string s, string t)
 	cout << "|                                      |" << endl;
 	//stworzenie macierzy (vectorXvector) i wypelnienie zerami na start
 	vector<vector<int>> vect(x, vector<int>(y));
-	for (int i = 0; i < x; i++)
-	{
-		for (int j = 0; j < y; j++)
-		{
+
+	for (int i = 0; i < x; i++)	{
+		for (int j = 0; j < y; j++)	{
 			vect[i][j] = 0;
 		}
 	}
 	//wypelnienie planszy pasazerami
 	int rndmRANGE = z;
 	int middlePNGcount = rand() % rndmRANGE;
-	for (int i = 0; i < middlePNGcount; i++)
-	{
+
+	for (int i = 0; i < middlePNGcount; i++) {
 		int rndmROW = rand() % x;
 		int	rndmCOL = rand() % y;
 		vect[rndmROW][rndmCOL] = 1;
 	}
 	//wydrukowanie lini z macierza(plansza) + po bokach ozdoby
-	for (int i = 0; i < x; i++)
-	{
+	for (int i = 0; i < x; i++)	{
 		cout << "| " << i << s;
-		for (int j = 0; j < y; j++)
-		{
+		for (int j = 0; j < y; j++)	{
 			cout << vect[i][j] << " ";
 		}
 		cout << t << endl;
 	}
 	//dopelnienie dolnych lini jesli trzeba (w zaleznosci ile wierszy generowal przed chwila
-	if (x == 3)
-	{
+	if (x == 3)	{
 		cout << "|                                      |" << endl;
 		cout << "|                                      |" << endl;
 		cout << "|                                      |" << endl;
 		cout << "|                                      |" << endl;
 		cout << "|                                      |" << endl;
 	}
-	else if (x == 4)
-	{
+	else if (x == 4) {
 		cout << "|                                      |" << endl;
 		cout << "|                                      |" << endl;
 		cout << "|                                      |" << endl;
 		cout << "|                                      |" << endl;
 	}
-	else if (x == 6)
-	{
+	else if (x == 6) {
 		cout << "|                                      |" << endl;
 		cout << "|                                      |" << endl;
 	}
 	//ostatnie linie
-	cout << "{row} > [spacebar]  > {column} > [enter]" << endl;
+	cout << "| {row} > [enter]   {column} > [enter] |" << endl;
 	cout << "@--------------------------------------@" << endl;
 	cout << "|          Where do you seat?          |" << endl;
 	cout << "@--------------------------------------@" << endl;
-	/*
-	PRACE NA MECHANIZMEM BLOKUJACYM MOZLIWOSC PODANIA X LUB Y
-	POZA SKALA MACIERZY
 	
-	
-	int playerX, playerY;
-	bool pXbool, pYbool;
-	do
-	{
-		pXbool = false;
-		cin >> playerX;
-		pXbool = testCoords(x, playerX);
-	} while (pXbool == false);
-	do
-	{
-		pYbool = false;
-		cin >> playerY;
-		pYbool = testCoords(x, playerY);
-	} while (pYbool == false);
-	*/
-
 	//prosty mechanizm przyjmowania coordynatow do wywalenia jak sie fix duzy zrobi
 	int playerX, playerY;
-	cin >> playerX >> playerY;
+	do {
+		cin >> playerX;
+		cin >> playerY;
+		if (playerX > x-1 || playerY > y-1)	{
+			cout << "Can't seat outside of the bus, gimme seat agian!" << endl;
+		}
+	} while (playerX > x-1 || playerY > y-1);
+	//playerX = UnverifiedX;
+	//playerY = UnverifiedY;
 	//sprawdzanie wyniku - nowa macierz z zapisanymi wynikami
 	vector<vector<double>> vectSCR(x, vector<double>(y));
 	double currentMaxScore = 9;
 	double MScore = 9;
+
 	for (int i = 0; i < x; i++) {
 		for (int j = 0; j < y; j++) {
 			if (vect[i][j] == 0) {
@@ -415,49 +360,38 @@ void generatorPlanszy(int x, int y, int w, int z, string s, string t)
 	}
 	*/
 	double probability;
-	if (vect[playerX][playerY] == 1)
-	{
+	if (vect[playerX][playerY] == 1) {
 		probability = 666.0;
 	}
-	else
-	{
+	else {
 		probability = calculateProbability(vect, playerX, playerY, x, y);
 	}
-	
-	if (probability <= currentMaxScore)
-	{
+
+	if (probability <= currentMaxScore) {
 		wygranaGra(probability);
-		if (x == 4)
-		{
+		if (x == 4)	{
 			czyTinySecret++;
 		}
-		if (x == 6)
-		{
+		if (x == 6)	{
 			czyHugeSecret++;
 		}
-		if (x == 3)
-		{
+		if (x == 3)	{
 			tinyTimes++;
 		}
-		if (x == 8)
-		{
+		if (x == 8)	{
 			hugeTimes++;
 		}
-
 	}
-	else if (probability == 666.0)
-	{
+	else if (probability == 666.0) {
 		gameOver();
 	}
-	else
-	{
+	else {
 		przegranaGra(currentMaxScore, probability);
 	}
 	RDLN();
 }
 
-void PCtinyBus()
-{
+void PCtinyBus() {
 	CLSCR();
 	cout << "@--------------------------------------@" << endl;
 	cout << "|                                      |" << endl;
@@ -477,8 +411,7 @@ void PCtinyBus()
 	RDLN();
 }
 
-void PCsmallBus()
-{
+void PCsmallBus() {
 	CLSCR();
 	cout << "@--------------------------------------@" << endl;
 	cout << "|                                      |" << endl;
@@ -498,8 +431,7 @@ void PCsmallBus()
 	RDLN();
 }
 
-void PClargeBus()
-{
+void PClargeBus() {
 	CLSCR();
 	cout << "@--------------------------------------@" << endl;
 	cout << "|                                      |" << endl;
@@ -519,8 +451,7 @@ void PClargeBus()
 	RDLN();
 }
 
-void PChugeBus()
-{
+void PChugeBus() {
 	CLSCR();
 	cout << "@--------------------------------------@" << endl;
 	cout << "|                                      |" << endl;
@@ -540,8 +471,7 @@ void PChugeBus()
 	RDLN();
 }
 
-void titleScr()
-{
+void titleScr() {
 	CLSCR();
 	cout << "@--------------------------------------@" << endl;
 	cout << "|                                      |" << endl;
@@ -560,8 +490,7 @@ void titleScr()
 	cout << "@-------------Warsaw-2023--------------@" << endl;
 }
 
-void titleScr2()
-{
+void titleScr2() {
 	CLSCR();
 	cout << "@--------------------------------------@" << endl;
 	cout << "|                                      |" << endl;
@@ -580,8 +509,7 @@ void titleScr2()
 	cout << "@-------------Warsaw-2023--------------@" << endl;
 }
 
-void titleScrMain()
-{
+void titleScrMain() {
 	CLSCR();
 	cout << "@--------------------------------------@" << endl;
 	cout << "|                                      |" << endl;
@@ -600,8 +528,7 @@ void titleScrMain()
 	cout << "@--------------------------------------@" << endl;
 }
 
-void ctrlScr()
-{
+void ctrlScr() {
 	CLSCR();
 	cout << "@--------------------------------------@" << endl;
 	cout << "|                                      |" << endl;
@@ -620,8 +547,7 @@ void ctrlScr()
 	cout << "@--------------------------------------@" << endl;
 }
 
-void plotScr()
-{
+void plotScr() {
 	CLSCR();
 	cout << "@--------------------------------------@" << endl;
 	cout << "|                                      |" << endl;
@@ -640,8 +566,7 @@ void plotScr()
 	cout << "@--------------------------------------@" << endl;
 }
 
-void firstChoice()
-{
+void firstChoice() {
 	CLSCR();
 	cout << "@--------------------------------------@" << endl;
 	cout << "|                                      |" << endl;
@@ -660,8 +585,7 @@ void firstChoice()
 	cout << "@--------------------------------------@" << endl;
 }
 
-void PCnoBus()
-{
+void PCnoBus() {
 	CLSCR();
 	cout << "@--------------------------------------@" << endl;
 	cout << "|                                      |" << endl;
@@ -681,15 +605,8 @@ void PCnoBus()
 	RDLN();
 }
 
-
-
-
-
-
-
 //MAIN
-int main()
-{
+int main() {
 	Bus SMALLbus(4, 8, 8, 24, "         ", "           |");
 	Bus LARGEbus(6, 12, 18, 54, "      ", "      |");
 	Bus TINYbus(3, 6, 6, 12, "            ", "            |");
@@ -706,39 +623,34 @@ int main()
 	plotScr();
 	RDLN();
 	bool czyGramJeszczeRaz = true;
-	while (czyGramJeszczeRaz == true)
-	{
+
+	while (czyGramJeszczeRaz == true) {
 		firstChoice();
 		int PCbus;
 		cin >> PCbus;
-		while (PCbus != 0 && PCbus != 1 && PCbus != 2 && PCbus != 9)
-		{
+		while (PCbus != 0 && PCbus != 1 && PCbus != 2 && PCbus != 9) {
 			PCnoBus();
 			RDLN();
 			firstChoice();
 			cin >> PCbus;
 		}
-		if (PCbus == 0)
-		{
+
+		if (PCbus == 0)	{
 			PCtinyBus();
 		}
-		else if (PCbus == 1)
-		{
+		else if (PCbus == 1) {
 			PCsmallBus();
 		}
-		else if (PCbus == 2)
-		{
+		else if (PCbus == 2) {
 			PClargeBus();
 		}
-		else if (PCbus == 9)
-		{
+		else if (PCbus == 9) {
 			PChugeBus();
 		}
 		RDLN();
 
 		Bus* pointBus;
-		switch (PCbus)
-		{
+		switch (PCbus) {
 		case 0:
 			pointBus = &TINYbus;
 			break;
@@ -761,24 +673,19 @@ int main()
 		secretRevealTime();
 		//czy grasz ponownie
 		playAgain();
-		int graszDalejQM;
+		int graszDalejQM = 2;
 		cin >> graszDalejQM;
-		while (graszDalejQM != 0 && graszDalejQM != 1)
-		{
+		while (graszDalejQM != 0 && graszDalejQM != 1) {
 			cout << " ZERO or ONE ...FFS! ";
 			cin >> graszDalejQM;
 		}
-		if (graszDalejQM == 1)
-		{
+		if (graszDalejQM == 1) {
 			czyGramJeszczeRaz = true;
 		}
-		else
-		{
+		else {
 			czyGramJeszczeRaz = false;
 		}
-		
 	};
-
 	exitScreen();
 	return 0;
 }
