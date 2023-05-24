@@ -764,11 +764,12 @@ int main()
 		playAgain();
 		int graszDalejQM;
 		cin >> graszDalejQM;
-		if ((graszDalejQM != 0) && (graszDalejQM != 1))
+		while (graszDalejQM != 0 && graszDalejQM != 1)
 		{
+			cout << " ZERO or ONE ...FFS! ";
 			cin >> graszDalejQM;
 		}
-		else if (graszDalejQM == 1)
+		if (graszDalejQM == 1)
 		{
 			czyGramJeszczeRaz = true;
 		}
