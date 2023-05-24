@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <string>
 #include <cstdlib>
 #include <vector>
@@ -706,7 +706,8 @@ int main()
 	RDLN();
 	plotScr();
 	RDLN();
-	do
+	bool czyGramJeszczeRaz = true;
+	while (czyGramJeszczeRaz == true)
 	{
 		firstChoice();
 		int PCbus;
@@ -761,12 +762,22 @@ int main()
 		secretRevealTime();
 		//czy grasz ponownie
 		playAgain();
-		cin >> czyGramJeszczeRaz;
-		if ((czyGramJeszczeRaz != 0) && (czyGramJeszczeRaz != 1))
+		int graszDalejQM;
+		cin >> graszDalejQM;
+		if ((graszDalejQM != 0) && (graszDalejQM != 1))
 		{
-			cin >> czyGramJeszczeRaz;
+			cin >> graszDalejQM;
 		}
-	} while (czyGramJeszczeRaz == 1);
+		else if (graszDalejQM == 1)
+		{
+			czyGramJeszczeRaz = true;
+		}
+		else
+		{
+			czyGramJeszczeRaz = false;
+		}
+		
+	};
 
 	exitScreen();
 	return 0;
